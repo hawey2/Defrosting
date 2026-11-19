@@ -1,0 +1,15 @@
+{%- comment -%}
+  Lưới ảnh: khai báo trong front matter
+    gallery:
+      - src: /assets/images/portfolio/a.jpg
+        caption: "..."
+  rồi chèn {% include gallery.html images=page.gallery %}
+{%- endcomment -%}
+<div class="gallery">
+  {%- for img in include.images -%}
+  <figure class="figure">
+    <img src="{{ img.src | relative_url }}" alt="{{ img.alt | default: img.caption | escape }}" loading="lazy" decoding="async">
+    {%- if img.caption %}<figcaption>{{ img.caption | markdownify | remove: '<p>' | remove: '</p>' }}</figcaption>{% endif -%}
+  </figure>
+  {%- endfor -%}
+</div>

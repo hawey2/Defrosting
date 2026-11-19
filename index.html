@@ -1,0 +1,55 @@
+---
+layout: default
+title: Trang chủ
+---
+<section class="hero wrap">
+  <div class="hero-text">
+    <p class="kicker">Sổ tay nghiên cứu · AI × Y học</p>
+    <h1 class="hero-title">Rã đông <em>những khái niệm</em> đang đóng băng.</h1>
+    <p class="lead">{{ site.description }}</p>
+    <p class="hero-cta">
+      <a class="btn btn--solid" href="{{ '/blog/' | relative_url }}">Đọc bài viết</a>
+      <a class="btn" href="{{ '/portfolio/' | relative_url }}">Xem portfolio</a>
+    </p>
+  </div>
+  <div class="hero-art" aria-hidden="true">
+    <img src="{{ '/assets/images/hero-thaw.svg' | relative_url }}" alt="">
+  </div>
+</section>
+
+<section class="wrap section">
+  <div class="section-head">
+    <h2>Bài viết mới</h2>
+    <a href="{{ '/blog/' | relative_url }}">Tất cả →</a>
+  </div>
+  <div class="card-grid">
+    {% for post in site.posts limit: 6 %}
+      {% include post-card.html post=post %}
+    {% endfor %}
+  </div>
+</section>
+
+<section class="wrap section">
+  <div class="section-head">
+    <h2>Portfolio</h2>
+    <a href="{{ '/portfolio/' | relative_url }}">Tất cả →</a>
+  </div>
+  <div class="masonry">
+    {% assign projects = site.portfolio | sort: 'order' %}
+    {% for item in projects limit: 6 %}
+      <a class="tile" href="{{ item.url | relative_url }}">
+        <img src="{{ item.cover | relative_url }}" alt="{{ item.title | escape }}" loading="lazy" decoding="async">
+        <span class="tile-caption"><strong>{{ item.title }}</strong>{% if item.year %}<span>{{ item.year }}</span>{% endif %}</span>
+      </a>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="wrap section themes">
+  <h2>Mình đang tìm hiểu</h2>
+  <ul class="theme-list">
+    <li><span class="dot dot--ice"></span><strong>AI trong Phụ sản</strong><span class="muted">Siêu âm, monitor tim thai (CTG), hỗ trợ sinh sản, sàng lọc.</span></li>
+    <li><span class="dot dot--thaw"></span><strong>AI ở các khoa khác</strong><span class="muted">Chẩn đoán hình ảnh, giải phẫu bệnh, hồi sức, quản trị bệnh viện.</span></li>
+    <li><span class="dot dot--warm"></span><strong>Đổi mới y tế Việt Nam</strong><span class="muted">Dữ liệu, liên thông, chính sách và con người.</span></li>
+  </ul>
+</section>

@@ -1,0 +1,27 @@
+---
+layout: default
+---
+<article class="project">
+  <header class="post-hero wrap">
+    <p class="kicker">Portfolio{% if page.year %} · {{ page.year }}{% endif %}{% if page.role %} · {{ page.role }}{% endif %}</p>
+    <h1>{{ page.title }}</h1>
+    {% if page.description %}<p class="lead">{{ page.description }}</p>{% endif %}
+    {% if page.tools %}<ul class="tag-list">{% for t in page.tools %}<li><span>{{ t }}</span></li>{% endfor %}</ul>{% endif %}
+  </header>
+  {% if page.cover %}
+  <figure class="figure figure--full post-cover">
+    <img src="{{ page.cover | relative_url }}" alt="{{ page.title | escape }}">
+  </figure>
+  {% endif %}
+  <div class="wrap narrow prose post-content">
+    {{ content }}
+    {% if page.gallery %}
+    <h2 id="thu-vien-anh">Thư viện ảnh</h2>
+    {% include gallery.html images=page.gallery %}
+    {% endif %}
+    {% if page.links %}
+    <p class="project-links">{% for l in page.links %}<a class="btn" href="{{ l.url }}">{{ l.label }} ↗</a>{% endfor %}</p>
+    {% endif %}
+    <p><a href="{{ '/portfolio/' | relative_url }}">← Tất cả dự án</a></p>
+  </div>
+</article>

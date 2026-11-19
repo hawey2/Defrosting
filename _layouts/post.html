@@ -1,0 +1,61 @@
+---
+layout: default
+---
+<article class="post" data-figures="{{ page.figure_numbers | default: true }}">
+  <header class="post-hero wrap">
+    <p class="kicker">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%d.%m.%Y' }}</time>
+      · {% include reading-time.html content=content %}
+      {% if page.updated %}· cập nhật {{ page.updated | date: '%d.%m.%Y' }}{% endif %}
+    </p>
+    <h1>{{ page.title }}</h1>
+    {% if page.description %}<p class="lead">{{ page.description }}</p>{% endif %}
+    {% if page.tags.size > 0 %}
+    <ul class="tag-list">
+      {% for t in page.tags %}<li><a href="{{ '/tags/' | relative_url }}#{{ t | slugify }}">#{{ t }}</a></li>{% endfor %}
+    </ul>
+    {% endif %}
+  </header>
+
+  {% if page.cover %}
+  <figure class="figure figure--full post-cover">
+    <img src="{{ page.cover | relative_url }}" alt="{{ page.cover_alt | default: page.title | escape }}">
+    {% if page.cover_caption %}<figcaption>{{ page.cover_caption | markdownify | remove: '<p>' | remove: '</p>' }}</figcaption>{% endif %}
+  </figure>
+  {% endif %}
+
+  <div class="post-grid wrap">
+    {% if page.toc %}
+    <aside class="toc" aria-label="Mục lục">
+      <p class="toc-title">Mục lục</p>
+      <nav class="toc-nav"></nav>
+    </aside>
+    {% endif %}
+    <div class="prose post-content">
+      {{ content }}
+
+      {% if page.references %}
+      <section class="references">
+        <h2 id="tai-lieu-tham-khao">Tài liệu tham khảo</h2>
+        <ol>
+          {% for r in page.references %}<li>{{ r | markdownify | remove: '<p>' | remove: '</p>' }}</li>{% endfor %}
+        </ol>
+      </section>
+      {% endif %}
+
+      <footer class="post-footer">
+        <div class="author-card">
+          <svg class="author-mark" viewBox="0 0 40 40" aria-hidden="true"><use href="{{ '/assets/images/icons.svg#flake' | relative_url }}"/></svg>
+          <div>
+            <p class="author-name">{{ site.author.name }}</p>
+            <p class="muted">{{ site.author.bio }}</p>
+          </div>
+        </div>
+        <nav class="post-nav">
+          {% if page.previous %}<a class="prev" href="{{ page.previous.url | relative_url }}"><span class="muted">← Bài trước</span>{{ page.previous.title }}</a>{% else %}<span></span>{% endif %}
+          {% if page.next %}<a class="next" href="{{ page.next.url | relative_url }}"><span class="muted">Bài sau →</span>{{ page.next.title }}</a>{% endif %}
+        </nav>
+      </footer>
+    </div>
+  </div>
+</article>
