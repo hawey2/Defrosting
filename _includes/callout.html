@@ -1,0 +1,7 @@
+{%- comment -%}
+  {% include callout.html type="note|key|warn" title="Tiêu đề" content="Nội dung **markdown**" %}
+{%- endcomment -%}
+<aside class="callout callout--{{ include.type | default: 'note' }}">
+  {%- if include.title %}<p class="callout-title">{{ include.title }}</p>{% endif -%}
+  {{ include.content | markdownify }}
+</aside>

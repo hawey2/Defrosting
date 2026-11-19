@@ -1,0 +1,64 @@
+# ─────────────────────────────────────────────────────────────
+#  Defrosting — cấu hình chính
+#  Sửa các dòng có dấu ✏️ cho phù hợp với bạn.
+# ─────────────────────────────────────────────────────────────
+title: Defrosting                                   # ✏️
+tagline: "Rã đông những khái niệm khó — AI, y học & đổi mới hệ thống y tế"   # ✏️
+description: >-                                    # ✏️
+  Blog nghiên cứu cá nhân về các công nghệ AI đang được triển khai trong khoa
+  Phụ sản và các khoa khác trong bệnh viện, cùng những hướng đổi mới cho hệ
+  thống y tế Việt Nam.
+author:
+  name: Icey                                       # ✏️
+  bio: >-                                          # ✏️
+    Quan tâm tới giao điểm giữa y học lâm sàng, dữ liệu và trí tuệ nhân tạo.
+    Viết để hiểu, vẽ để giải thích.
+  email: ""                                        # ✏️ (để trống nếu không muốn hiện)
+  github: hawey2                                   # ✏️
+  linkedin: ""                                     # ✏️ ví dụ: ten-cua-ban
+  orcid: ""                                        # ✏️ ví dụ: 0000-0000-0000-0000
+lang: vi
+
+# Địa chỉ trang. Workflow GitHub Actions tự điền baseurl khi build,
+# giá trị dưới đây dùng khi chạy thử trên máy.
+url: "https://hawey2.github.io"
+baseurl: "/Defrosting"
+
+permalink: /:year/:month/:title/
+timezone: Asia/Ho_Chi_Minh
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+  math_engine: null
+highlighter: rouge
+
+collections:
+  portfolio:
+    output: true
+    permalink: /portfolio/:name/
+
+defaults:
+  - scope: { path: "", type: posts }
+    values: { layout: post, toc: true }
+  - scope: { path: "", type: portfolio }
+    values: { layout: project }
+  - scope: { path: "" }
+    values: { layout: default }
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+sass:
+  style: compressed
+
+exclude:
+  - README.md
+  - HUONG-DAN-DANG-BAI.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - .github
